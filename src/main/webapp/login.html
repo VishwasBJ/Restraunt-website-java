@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        input {
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+        .login-button.disabled {
+            background-color: #cccccc;
+            pointer-events: none;
+        }
+        .error {
+            color: red;
+            margin-top: 0.5rem;
+        }
+        .signup-link {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <a href="signup.html" id="loginButton" class="login-button">Login</a>
+        </form>
+        <div id="error" class="error"></div>
+        <div id="loading">Logging in...</div>
+        <p class="signup-link">Don't have an account? <a href="signup.html">Sign up here</a></p>
+    </div>
+
+   
+</body>
+</html>

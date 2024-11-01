@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .signup-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        input {
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .signup-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        .signup-button:hover {
+            background-color: #218838;
+        }
+        .signup-button.disabled {
+            background-color: #cccccc;
+            pointer-events: none;
+        }
+        .error {
+            color: red;
+            margin-top: 0.5rem;
+        }
+        .login-link {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            
+            <button type="submit" id="signupButton" class="signup-button">Sign Up</button>
+        </form>
+        <div id="error" class="error"></div>
+        <div id="loading">Creating account...</div>
+        <p class="login-link">Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorDiv = document.getElementById('error');
+            const loadingDiv = document.getElementById('loading');
+            const signupButton = document.getElementById('signupButton');
+
+            errorDiv.textContent = '';
+            
+            if (!username || !password || !confirmPassword) {
+                errorDiv.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorDiv.textContent = 'Passwords do not match.';
+                return;
+            }
+
+            if (password.length < 8) {
+                errorDiv.textContent = 'Password must be at least 8 characters long.';
+                return;
+            }
+
+            signupButton.classList.add('disabled');
+            loadingDiv.style.display = 'block';
+
+            // Simulating an API call
+            setTimeout(() => {
+                // In a real application, you would send this data to your server
+                console.log('Signup attempt:', { username, password });
+                
+                // Simulating a successful signup
+                alert('Account created successfully! Redirecting to login page...');
+                window.location.href = 'login.html';
+
+                signupButton.classList.remove('disabled');
+                loadingDiv.style.display = 'none';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
